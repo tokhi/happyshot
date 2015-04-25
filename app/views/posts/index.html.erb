@@ -1,31 +1,24 @@
-<p id="notice"><%= notice %></p>
 
-<h1>Listing Posts</h1>
+    <%= render :partial => 'header'%>
 
-<table>
-  <thead>
-    <tr>
-      <th>Description</th>
-      <th>Image</th>
-      <th>Tags</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+     <%= render :partial => 'posts'%>
 
-  <tbody>
-    <% @posts.each do |post| %>
-      <tr>
-        <td><%= post.description %></td>
-        <td><%= post.image %></td>
-        <td><%= post.tags %></td>
-        <td><%= link_to 'Show', post %></td>
-        <td><%= link_to 'Edit', edit_post_path(post) %></td>
-        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
-<br>
-
-<%= link_to 'New Post', new_post_path %>
+    <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+    <div class="scroll-top page-scroll visible-xs visble-sm">
+        <a class="btn btn-primary" href="#page-top">
+            <i class="fa fa-chevron-up"></i>
+        </a>
+    </div>
+     <script src="http://localhost:8001/js/dependencies/gifshot.min.js"></script>
+      <script src="http://localhost:8001/js/dependencies/prism.min.js"></script>
+      <script src="http://localhost:8001/js/dependencies/esprima.min.js"></script>
+      <script src="http://localhost:8001/js/dependencies/escodegen.min.js"></script>
+      <script src="http://localhost:8001/js/dependencies/lodash.min.js"></script>
+      <script class="gifshot-code-template" type="text/template">
+            var image = "";
+            animatedImage = document.createElement('img');
+            animatedImage.src = image;
+            document.body.appendChild(animatedImage);
+      </script>
+      <script src="http://localhost:8001/js/demo2.js"></script>

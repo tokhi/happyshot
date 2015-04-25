@@ -1,9 +1,7 @@
 class CreatePosts < ActiveRecord::Migration
   def change
     create_table :posts do |t|
-      t.text :description
-      t.string :image
-      t.string :tags
+      t.references :user, index: true, foreign_key: true
 
       t.timestamps null: false
     end
