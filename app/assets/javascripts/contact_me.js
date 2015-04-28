@@ -1,4 +1,4 @@
-$(function() {
+0$(function() {
 
     $("input,textarea").jqBootstrapValidation({
         preventSubmit: true,

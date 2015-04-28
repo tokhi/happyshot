@@ -1,10 +1,12 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:create]
 
   # GET /posts
   # GET /posts.json
   def index
     @posts = Post.all
+    @post = Post.new
   end
 
   # GET /posts/1
@@ -24,7 +26,12 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-    @post = Post.new(post_params)
+    # @post = Post.new(post_params)
+    @post = current_user.posts.create(post_params)
+    puts "params: #{params[:gif]}"
+    # File.open('public/test.gif', 'wb') do|f|
+    #   f.write(Base64.decode64(base_64_encoded_data))
+    # end
 
     respond_to do |format|
       if @post.save
@@ -61,6 +68,7 @@ class PostsController < ApplicationController
     end
   end
 
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
@@ -69,6 +77,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:user_id)
+      params.require(:post).permit(:user_id,:note,:tags)
     end
 end

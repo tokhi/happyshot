@@ -1,17 +1,33 @@
+<div class="modal fade" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4 class="modal-title">Modal title</h4>
+      </div>
+      <%= form_for(@post) do |f| %>
+      <div class="modal-body">
+         <span class="options-button-group">
+            <button type="button" id="create-gif" class="btn btn-large btn-primary create-gif-button">Webcam Gif</button>
+          </span>
+          <span class="options-button-group">
+            <button type="button" id="create-gif" class="btn btn-large btn-primary create-gif-button">Video GIF</button>
+          </span>
 
-    <section class="success" id="new">
-        <div class="container">
-           
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <span class="options-button-group">
-                       
-                    <span id="create-gif" class="btn btn-lg btn-outline create-gif-button">
-                        <i class="fa fa-upload"></i> Upload Your Happy Face Shot
-                    </span>
-                    </span>
-                </div>
 
-            </div>
+        <section class="gifshot-image-preview-section"></section>
+        <div class="placeholder-div hidden">
+          <span class="placeholder-div-dimensions"></span>
         </div>
-    </section>
+        <progress max="1" value="0" class="gifshot-progress-bar hidden"></progress>
+        <textarea class=""></textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+         <%= f.submit :class=>"btn btn-primary" %>
+      </div>
+      <% end %>
+
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

@@ -9,7 +9,6 @@
             </div>
             <div class="row">
                 
-                   
               <div class="col-lg-12 text-center">
               
               <section class="gifshot-image-preview-section"></section>
@@ -22,3 +21,13 @@
             
         </div>
     </section>
+
+
+
+
+
+    <script type="text/javascript">
+    var previewImage = document.querySelector('.gifshot-image-preview-section').innerHTML;
+    var pImage = $(previewImage).attr('src');
+    pImage.replace("image/gif", "image/octet-stream");
+    </script>
