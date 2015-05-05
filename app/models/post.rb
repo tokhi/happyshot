@@ -14,5 +14,7 @@
 class Post < ActiveRecord::Base
   belongs_to :user
   acts_as_commentable
+  has_many :favorites
+  has_many :users, :through => :favorites
   # gif pause/play   http://jsfiddle.net/eh6uat9j/
 end

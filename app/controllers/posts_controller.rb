@@ -9,6 +9,7 @@ class PostsController < ApplicationController
     # @posts = Post.all.order('created_at DESC')
     @posts = Post.order('created_at DESC').page(params[:page])
     @post = Post.new
+    @favorite = Favorite.new
     # respond_to do |format|
     #   format.html
     #   format.js
