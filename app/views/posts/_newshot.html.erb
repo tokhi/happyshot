@@ -15,18 +15,31 @@
           </span>
 
 
-        <section class="gifshot-image-preview-section"></section>
+        <section class="gifshot-image-preview-section" id="gif-preview"></section>
         <div class="placeholder-div hidden">
           <span class="placeholder-div-dimensions"></span>
         </div>
         <progress max="1" value="0" class="gifshot-progress-bar hidden"></progress>
-        <%= f.textarea :class=>"input-default" :note %>
+         <%= f.text_area :image, :class=>"gifshot-image-preview-section hidden", :id=>"gifData" %>
+         <%= f.text_area :note%><br />
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
          <%= f.submit :class=>"btn btn-primary" %>
       </div>
       <% end %>
+
+
+      
+
+      <script>
+         $("#gif-preview").bind("DOMSubtreeModified", function() {
+                 var a=document.querySelector('.gifshot-image-preview-section').innerHTML;
+             var b=$(a).attr('src');
+            document.getElementById("gifData").value=b;
+          // }
+          });
+      </script>
 
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

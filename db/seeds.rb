@@ -5,3 +5,11 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+require 'securerandom'
+
+75.times do
+  Post.create(
+    :note => "My Post #{SecureRandom.hex(2)}",
+    :user_id => 1
+  )
+end

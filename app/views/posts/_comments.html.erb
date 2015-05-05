@@ -1,31 +1,42 @@
 <div class="detailBox">
     <div class="titleBox">
-      <label>Comment Box</label>
-        <button type="button" class="close" aria-hidden="true">&times;</button>
+      <label><%= post.note%></label>
+        <!-- <button type="button" class="close" aria-hidden="true">&times;</button> -->
     </div>
     <div class="commentBox">
         
-        <p class="taskDescription">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+        <p class="taskDescription">
+            <a href="#comments<%= post.id%>" class="dropdown-header" data-toggle="collapse"><%=post.comments.count%> comments</a>
+        </p>
     </div>
     <div class="actionBox">
-        <ul class="commentList">
+        <ul id="comments<%= post.id%>" class="commentList collapse" >
+            <% post.comments.all.each do | comment | %>
             <li>
                 <div class="commenterImage">
                   <img src="http://lorempixel.com/50/50/people/6" />
                 </div>
                 <div class="commentText">
-                    <p class="">Hello this is a test comment.</p> <span class="date sub-text">on March 5th, 2014</span>
+                    <p class=""><%=comment.comment%></p> <span class="date sub-text">on <%=comment.created_at%></span>
 
                 </div>
             </li>
+            <%end%>
         </ul>
-        <form class="form-inline" role="form">
-            <div class="form-group">
-                <input class="form-control" type="text" placeholder="Your comments" />
+
+
+        
+        <%= bootstrap_form_tag url: '/posts/add_new_comment', :html => { :class => "form-inline" }  do |f| %>
+         
+          <%= f.text_field :comment, placeholder: 'Your comments', hide_label: 'true' %>
+           <%= hidden_field_tag "id", post.id %>
+          <div class="form-group">
+          <%= f.submit "Add", class: 'btn btn-default'%>
             </div>
-            <div class="form-group">
-                <button class="btn btn-default">Add</button>
-            </div>
-        </form>
-    </div>
+        <% end %>
+
+
+
+
+
 </div>

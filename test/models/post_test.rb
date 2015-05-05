@@ -8,6 +8,7 @@
 #  updated_at :datetime         not null
 #  note       :string
 #  tags       :string
+#  image      :string
 #
 
 require 'test_helper'

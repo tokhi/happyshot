@@ -5,8 +5,14 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
+    # http://www.sitepoint.com/infinite-scrolling-rails-basics/
+    # @posts = Post.all.order('created_at DESC')
+    @posts = Post.order('created_at DESC').page(params[:page])
     @post = Post.new
+    # respond_to do |format|
+    #   format.html
+    #   format.js
+    # end
   end
 
   # GET /posts/1
@@ -28,11 +34,14 @@ class PostsController < ApplicationController
   def create
     # @post = Post.new(post_params)
     @post = current_user.posts.create(post_params)
-    puts "params: #{params[:gif]}"
+    puts "params: #{params[:note]}"
+    # image = Magick::ImageList.new
     # File.open('public/test.gif', 'wb') do|f|
-    #   f.write(Base64.decode64(base_64_encoded_data))
+    #   gif = image.from_blob(Base64.decode64(@post.image))
+    #   # gif = Base64.decode64(@post.image).force_encoding('UTF-8').encode
+    #   f.write(gif)
     # end
-
+    # @post.image = "test.gif"
     respond_to do |format|
       if @post.save
         format.html { redirect_to @post, notice: 'Post was successfully created.' }
@@ -58,6 +67,22 @@ class PostsController < ApplicationController
     end
   end
 
+  def add_new_comment
+    post = Post.find(params[:id])
+    # post.comments << Post.new(params[:comment])
+    # redirect_to :action => :show, :id => post
+
+
+    # commentable = Post.create
+    comment = post.comments.create
+    comment.title = "First comment."
+    comment.user = current_user
+    comment.comment = params[:comment]
+    comment.save
+    redirect_to :action => :index
+
+  end
+
   # DELETE /posts/1
   # DELETE /posts/1.json
   def destroy
@@ -77,6 +102,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:user_id,:note,:tags)
+      params.require(:post).permit(:user_id,:note,:tags,:image,:comment)
     end
 end
