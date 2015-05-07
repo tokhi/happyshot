@@ -1,6 +1,6 @@
 class FavoritesController < ApplicationController
   before_action :set_favorite, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!, only: [:create]
   # GET /favorites
   # GET /favorites.json
   def index
@@ -24,9 +24,13 @@ class FavoritesController < ApplicationController
   # POST /favorites
   # POST /favorites.json
   def create
-    current_user.favorites.create(:post_id => params[:post_id])
+    post = Post.find(params[:post_id])
+    if post.favorites.where(:user_id=>current_user.id).count > 0
+      post.favorites.where(:user_id=>current_user.id)[0].delete
+    else
+      current_user.favorites.create(:post_id => params[:post_id])
+    end
     redirect_to '/posts'
-
     # @favorite = Favorite.new(favorite_params)
 
     # respond_to do |format|

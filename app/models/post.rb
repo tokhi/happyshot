@@ -12,6 +12,8 @@
 #
 
 class Post < ActiveRecord::Base
+  validates :note, presence: true
+  validates :image, presence: true
   belongs_to :user
   acts_as_commentable
   has_many :favorites

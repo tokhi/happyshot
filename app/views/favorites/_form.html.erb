@@ -1,21 +1,29 @@
 <%= form_for(@favorite) do |f| %>
-  <% if @favorite.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@favorite.errors.count, "error") %> prohibited this favorite from being saved:</h2>
-
-      <ul>
-      <% @favorite.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
    <%= hidden_field_tag "post_id", post.id %>
+    <% if user_signed_in? %>
     <%= hidden_field_tag "user_id", current_user.id %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <% end %>
+    <span class="text-muted"></span>
+      <% if user_signed_in? %>
+        <% if post.favorites.where(:user_id=>current_user.id).count > 0 %>
+          <button class="btn btn-link" role="link" type="submit" value="">
+          <%=post.favorites.count%>&nbsp;<i class="fa fa-heart text-danger"></i>
+          </button>
+          userid<%=current_user.id%>
+        <% else %>
+          <button class="btn btn-link" role="link" type="submit" value="">
+          <%=post.favorites.count%>&nbsp;<i class="fa fa-heart text-muted"></i>
+          </button>
+        <%end%>
+      <% else %>
+        <a href="#loginModal" data-toggle="modal", class ="btn btn-link">
+        <%=post.favorites.count%>&nbsp;<i id="sign_in" class="fa fa-heart text-muted"></i>
+        </a>
+      <% end %>
+    
+    
+
+
+
+
 <% end %>
