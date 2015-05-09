@@ -23,7 +23,10 @@
               </p>
               <p>
                  <%= f.submit "Sign in", class: "btn btn-primary" %>
-                <%= link_to "Forgot Password?", new_password_path(resource_name) %><br />
+                 <a href="#forgetPasswdModal" data-toggle="modal" data-dismiss="modal" class ="btn btn-link">
+              Forgot Password?
+              </a>
+              <br />
               </p>
             <% end %>
           </div>
