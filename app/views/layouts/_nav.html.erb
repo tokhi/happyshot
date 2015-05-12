@@ -18,18 +18,32 @@
                     <li class="hidden">
                         <a href="#page-top"></a>
                     </li>
+                     <% if user_signed_in? %>
                     <li class="page-scroll">
                          <a href="#newShotModal" data-toggle="modal" data-dismiss="modal" class ="btn btn-default glyphicon glyphicon-facetime-video">
                           New shot
                           </a>
                     </li>
+                    <% else %>
+                    <li class="page-scroll">
+                         <a href="#loginModal" data-toggle="modal" data-dismiss="modal" class ="btn btn-default glyphicon glyphicon-facetime-video">
+                          New shot
+                          </a>
+                    </li>
+                    <% end %>
                     <% if user_signed_in? %>
+                       <li class="page-scroll">
+                      <%= link_to("My posts",  my_posts_posts_path, :method => :get) %>   
+                      </li>
+
                       <li class="page-scroll">
-                      <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>   
+                      <%= render :partial => 'layouts/user_details'%>   
                       </li>
                     <% else %>
                       <li class="page-scroll">
-                      <%= link_to('Login', new_user_session_path)  %>  
+                         <a href="#loginModal" data-toggle="modal" data-dismiss="modal" class ="btn btn-link">
+                          Login
+                          </a>
                       </li>
                     <% end %>
 
@@ -41,4 +55,5 @@
             <!-- /.navbar-collapse -->
         </div>
         <!-- /.container-fluid -->
+        <%= render :partial => 'devise/registrations/edit'%>
     </nav>

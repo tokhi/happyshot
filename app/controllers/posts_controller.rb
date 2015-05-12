@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:create]
+  before_action :authenticate_user!, only: [:create, :my_posts]
 
   # GET /posts
   # GET /posts.json
@@ -10,10 +10,10 @@ class PostsController < ApplicationController
     @posts = Post.order('created_at DESC').page(params[:page])
     @post = Post.new
     @favorite = Favorite.new
-    # respond_to do |format|
-    #   format.html
-    #   format.js
-    # end
+    respond_to do |format|
+      format.html
+      format.json
+    end
   end
 
   # GET /posts/1
@@ -35,7 +35,6 @@ class PostsController < ApplicationController
   def create
     # @post = Post.new(post_params)
     @post = current_user.posts.create(post_params)
-    puts "params: #{params[:note]}"
     # image = Magick::ImageList.new
     # File.open('public/test.gif', 'wb') do|f|
     #   gif = image.from_blob(Base64.decode64(@post.image))
@@ -43,15 +42,8 @@ class PostsController < ApplicationController
     #   f.write(gif)
     # end
     # @post.image = "test.gif"
-    respond_to do |format|
-      if @post.save
-        format.html { redirect_to @post, notice: 'Post was successfully created.' }
-        format.json { render :show, status: :created, location: @post }
-      else
-        format.html { render :new }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
-      end
-    end
+    redirect_to :action => :index
+   
   end
 
   # PATCH/PUT /posts/1
@@ -68,15 +60,19 @@ class PostsController < ApplicationController
     end
   end
 
+  def my_posts
+    @posts = Post.where(:user_id=>current_user.id).order('created_at DESC').page(params[:page])
+    @post = Post.new
+    @favorite = Favorite.new
+    render '/posts/index'
+  end
+
   def add_new_comment
     post = Post.find(params[:id])
     # post.comments << Post.new(params[:comment])
     # redirect_to :action => :show, :id => post
-
-
     # commentable = Post.create
     comment = post.comments.create
-    comment.title = "First comment."
     comment.user = current_user
     comment.comment = params[:comment]
     comment.save

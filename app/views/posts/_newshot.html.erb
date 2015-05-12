@@ -23,14 +23,14 @@
         <div class="fileinput fileinput-new" data-provides="fileinput">
         <div id="gif-preview" class="gifshot-image-preview-section thumbnail" data-trigger="fileinput" style="width: 300px; height: 300px;"></div>
         <div>
-         <%= f.text_area :note, class: 'input-medium', hide_label: 'true', placeholder: 'Say something'%>
-         
+         <%= f.text_area :note, id: 'notearea', class: 'input-medium', hide_label: 'true', placeholder: 'Say something', required: 'true', :maxlength => 130%>
+          <div id="textarea_feedback"></div>
         </div>
       </div>
 
 
          <%= f.text_area :image, :class=>"gifshot-image-preview-section hidden", :id=>"gifData", hide_label: 'true' %>
-         <br />
+        
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -53,3 +53,18 @@
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
+
+
+<script>
+$(document).ready(function() {
+    var text_max = 130;
+    $('#textarea_feedback').html(text_max + ' characters remaining');
+
+    $('#notearea').keyup(function() {
+        var text_length = $('#notearea').val().length;
+        var text_remaining = text_max - text_length;
+
+        $('#textarea_feedback').html(text_remaining + ' characters remaining');
+    });
+});
+</script>

@@ -1,13 +1,18 @@
 Rails.application.routes.draw do
   resources :favorites
-  resources :posts
+  resources :posts do
+    collection do
+      get :my_posts
+    end
+  end
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
   match "/posts/add_new_comment" => "posts#add_new_comment", :as => "add_new_comment_to_posts", :via => [:post]
+  # match "/my_posts" => "posts#index", :as => "my_posts", :via => [:get]
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  root 'posts#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

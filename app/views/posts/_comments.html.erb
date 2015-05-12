@@ -19,7 +19,7 @@
             <% post.comments.all.each do | comment | %>
             <li>
                 <div class="commenterImage">
-                  <img src="http://lorempixel.com/50/50/people/6" />
+                  <img src="http://lorempixel.com/50/50/people/<%=user_avatar(comment.user)%>" />
                 </div>
                 <div class="commentText">
                     <p class=""><%=comment.comment%></p> <span class="date sub-text">on <%=comment.created_at%></span>

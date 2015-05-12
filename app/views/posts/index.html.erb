@@ -29,4 +29,17 @@
       //       document.body.appendChild(animatedImage);
        </script>
       <script src="http://localhost:8001/js/demo2.js"></script>
+    <script>
+      $(document).ready(function() {
+    var text_max = 130;
+    $('#textarea_feedback').html(text_max + ' characters remaining');
+
+    $('#gifData').keyup(function() {
+        var text_length = $('#gifData').val().length;
+        var text_remaining = text_max - text_length;
+
+        $('#textarea_feedback').html(text_remaining + ' characters remaining');
+    });
+});
+      </script>
 

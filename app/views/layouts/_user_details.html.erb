@@ -1,0 +1,16 @@
+<div class="btn-group">
+	<button type="button" class="btn btn-link btn-lg " data-toggle="dropdown">
+  <span class="glyphicon glyphicon-user" aria-hidden="true"></span>  <%= current_user.email.split("@").first %> <span class="caret"></span>
+</button>
+
+  
+  <ul class="dropdown-menu" role="menu">
+    <li><a href="#editregisterationModal" data-toggle="modal" data-dismiss="modal" class ="btn btn-link">
+                          Edit profile
+                          </a></li>
+    <li class="divider"></li>
+    <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></li>
+  </ul>
+</div>
+
+

@@ -30,7 +30,10 @@ class FavoritesController < ApplicationController
     else
       current_user.favorites.create(:post_id => params[:post_id])
     end
-    redirect_to '/posts'
+    format.html 
+    format.json 
+    #   end
+    # redirect_to '/posts'
     # @favorite = Favorite.new(favorite_params)
 
     # respond_to do |format|
