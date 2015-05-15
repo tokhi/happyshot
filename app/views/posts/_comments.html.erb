@@ -10,7 +10,7 @@
             <div class="col-sm-4"><a href="#comments<%= post.id%>" class="btn btn-link" data-toggle="collapse"><%=post.comments.count%> comments</a></div>
             <div class="col-sm-4"><a href="#" class="btn btn-link">Download gif</a></div>
             
-            <%= render :partial => 'favorites/form', :locals=>{:post=>post}  %>
+            <%= render :partial => 'favorite', :locals=>{:post=>post}  %>
           </div>
         </p>
     </div>
@@ -31,9 +31,9 @@
 
 
         
-        <%= bootstrap_form_tag url: '/posts/add_new_comment', :html => { :class => "form-inline" }  do |f| %>
+        <%= bootstrap_form_tag url: '/posts/add_new_comment', :remote => true, :html => { :class => "form-inline" }  do |f| %>
          
-          <%= f.text_field :comment, placeholder: 'Your comments', hide_label: 'true' %>
+          <%= f.text_field :comment, placeholder: 'Your comments', hide_label: 'true', size: "45"%>
            <%= hidden_field_tag "id", post.id %>
           <div class="form-group">
           <%= f.submit "Add", class: 'btn btn-default'%>

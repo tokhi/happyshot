@@ -1,4 +1,4 @@
-<%= form_for(@favorite, remote: true)  do |f| %>
+<%= form_for(@favorite)  do |f| %>
   <%= hidden_field_tag "post_id", post.id %>
   <% if user_signed_in? %>
     <%= hidden_field_tag "user_id", current_user.id %>
@@ -10,7 +10,7 @@
       <%=post.favorites.count%>&nbsp;<i class="fa fa-heart text-danger"></i>
     </button>
     <% else %>
-    <button class="btn btn-link" role="link" type="submit" value="">
+    <button id= "post-favorites" class="btn btn-link" role="link" type="submit" value="">
       <%=post.favorites.count%>&nbsp;<i class="fa fa-heart text-muted"></i>
     </button>
     <%end%>

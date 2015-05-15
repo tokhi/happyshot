@@ -1,0 +1,17 @@
+<% if user_signed_in? %>
+
+    <% if post.favorites.where(:user_id=>current_user.id).count > 0 %>
+      <%= link_to "/posts/dis_or_like/#{post.id}", class: 'btn btn-link', :method => :post, :remote => true do %>
+        <%=post.favorites.count%>&nbsp;<i class="fa fa-heart text-danger"></i>
+      <% end %>
+
+    <% else %>
+      <%= link_to "/posts/dis_or_like/#{post.id}", class: 'btn btn-link', :method => :post, :remote => true do %>
+        <%=post.favorites.count%>&nbsp;<i class="fa fa-heart text-muted"></i>
+      <% end %>
+    <%end%>
+  <% else %>
+    <a href="#loginModal" data-toggle="modal", class ="btn btn-link">
+      <%=post.favorites.count%>&nbsp;<i id="sign_in" class="fa fa-heart text-muted"></i>
+    </a>
+<% end %>

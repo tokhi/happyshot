@@ -30,20 +30,13 @@ class FavoritesController < ApplicationController
     else
       current_user.favorites.create(:post_id => params[:post_id])
     end
-    format.html 
-    format.json 
+    # format.js 
     #   end
-    # redirect_to '/posts'
+    redirect_to '/'
     # @favorite = Favorite.new(favorite_params)
 
     # respond_to do |format|
-    #   if @favorite.save
-    #     format.html { redirect_to @favorite, notice: 'Favorite was successfully created.' }
-    #     format.json { render :show, status: :created, location: @favorite }
-    #   else
-    #     format.html { render :new }
-    #     format.json { render json: @favorite.errors, status: :unprocessable_entity }
-    #   end
+    #   format.js
     # end
   end
 

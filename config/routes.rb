@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :favorites
   resources :posts do
     collection do
+      # post :dis_or_like
       get :my_posts
     end
   end
@@ -9,7 +10,7 @@ Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
   match "/posts/add_new_comment" => "posts#add_new_comment", :as => "add_new_comment_to_posts", :via => [:post]
-  # match "/my_posts" => "posts#index", :as => "my_posts", :via => [:get]
+  match "/posts/dis_or_like/:id" => "posts#dis_or_like", :as => "dis_or_like", :via => [:post]
 
   # You can have the root of your site routed with "root"
   root 'posts#index'

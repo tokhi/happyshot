@@ -35,6 +35,7 @@ gem 'acts_as_commentable'
 gem 'devise'
 gem 'annotate'
 gem 'bootstrap_form'
+gem 'utf8_enforcer_workaround'
 # infinit scrolling
 gem 'kaminari'
 group :development, :test do

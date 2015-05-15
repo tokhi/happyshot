@@ -12,7 +12,7 @@ class PostsController < ApplicationController
     @favorite = Favorite.new
     respond_to do |format|
       format.html
-      format.json
+      format.js
     end
   end
 
@@ -68,16 +68,42 @@ class PostsController < ApplicationController
   end
 
   def add_new_comment
-    post = Post.find(params[:id])
+    @post = Post.find(params[:id])
     # post.comments << Post.new(params[:comment])
     # redirect_to :action => :show, :id => post
     # commentable = Post.create
-    comment = post.comments.create
+    comment = @post.comments.create
     comment.user = current_user
     comment.comment = params[:comment]
     comment.save
-    redirect_to :action => :index
 
+    # redirect_to :action => :index
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+
+  def dis_or_like
+    puts "disor like route.............."
+    @post = Post.find(params[:id])
+   if @post.favorites.where(:user_id=>current_user.id).count > 0
+       puts "if part.."
+      @post.favorites.where(:user_id=>current_user.id)[0].delete
+    else
+      puts "else part..."
+      current_user.favorites.create(:post_id => params[:id])
+    end
+    #  nasty against DRY
+    # @posts = Post.order('created_at DESC').page(params[:page])
+    # # @posts = Post.where(:id => post.id..post.id+20).order('created_at DESC')
+    # @post = Post.new
+    # @favorite = Favorite.new
+
+    respond_to do |format|
+      format.html
+      format.js
+    end   
   end
 
   # DELETE /posts/1
