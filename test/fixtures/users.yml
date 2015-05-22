@@ -17,6 +17,7 @@
 #  updated_at             :datetime
 #  note                   :string
 #  tags                   :string
+#  avatar                 :string
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

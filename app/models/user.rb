@@ -17,6 +17,7 @@
 #  updated_at             :datetime
 #  note                   :string
 #  tags                   :string
+#  avatar                 :string
 #
 
 class User < ActiveRecord::Base
@@ -26,4 +27,5 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   has_many :posts, :through => :favorites
   has_many :favorites
+  belongs_to :report
 end

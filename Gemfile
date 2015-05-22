@@ -36,6 +36,7 @@ gem 'devise'
 gem 'annotate'
 gem 'bootstrap_form'
 gem 'utf8_enforcer_workaround'
+gem 'simple_enum'
 # infinit scrolling
 gem 'kaminari'
 group :development, :test do

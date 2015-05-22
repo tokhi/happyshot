@@ -1,18 +1,17 @@
 # == Schema Information
 #
-# Table name: favorites
+# Table name: reports
 #
 #  id         :integer          not null, primary key
 #  post_id    :integer
-#  user_id    :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  user_id    :integer
 #
 
-require 'test_helper'
-
-class FavoriteTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+class Report < ActiveRecord::Base
+  belongs_to :post
+  has_one :user
+  as_enum :type, nodality: 0, graphic: 1, others: 2
+  
 end

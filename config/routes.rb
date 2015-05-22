@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
   match "/posts/add_new_comment" => "posts#add_new_comment", :as => "add_new_comment_to_posts", :via => [:post]
   match "/posts/dis_or_like/:id" => "posts#dis_or_like", :as => "dis_or_like", :via => [:post]
+  match "/posts/report_post" => "posts#report_post", :as => "report_post", :via => [:post]
 
   # You can have the root of your site routed with "root"
   root 'posts#index'

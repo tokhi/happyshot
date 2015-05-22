@@ -7,7 +7,7 @@ class PostsController < ApplicationController
   def index
     # http://www.sitepoint.com/infinite-scrolling-rails-basics/
     # @posts = Post.all.order('created_at DESC')
-    @posts = Post.order('created_at DESC').page(params[:page])
+    @posts = Post.where(:publish=>true).order('created_at DESC').page(params[:page])
     @post = Post.new
     @favorite = Favorite.new
     respond_to do |format|
@@ -42,6 +42,9 @@ class PostsController < ApplicationController
     #   f.write(gif)
     # end
     # @post.image = "test.gif"
+    # @post.publish=true
+    # @post.user = current_user
+    # @post.save!
     redirect_to :action => :index
    
   end
@@ -61,10 +64,10 @@ class PostsController < ApplicationController
   end
 
   def my_posts
-    @posts = Post.where(:user_id=>current_user.id).order('created_at DESC').page(params[:page])
+    @posts = Post.where(:user_id=>current_user.id).order('created_at DESC').page(1)
     @post = Post.new
     @favorite = Favorite.new
-    render '/posts/index'
+    render :index
   end
 
   def add_new_comment
@@ -79,13 +82,12 @@ class PostsController < ApplicationController
 
     # redirect_to :action => :index
     respond_to do |format|
-      format.html
+      format.html{render :index}
       format.js
     end
   end
 
   def dis_or_like
-    puts "disor like route.............."
     @post = Post.find(params[:id])
    if @post.favorites.where(:user_id=>current_user.id).count > 0
        puts "if part.."
@@ -101,10 +103,49 @@ class PostsController < ApplicationController
     # @favorite = Favorite.new
 
     respond_to do |format|
-      format.html
+      format.html{render :index}
       format.js
     end   
   end
+
+  def report_post
+    puts "post reported"
+    @post = Post.find(params[:id])
+    if @post.reports.group_by(&:user_id).include? current_user.id
+      redirect_to :action => :index
+    else
+      @report = Report.new
+      @report.user_id = current_user.id
+      @report.post_id = @post.id
+      @report.type = params[:type].to_i
+      @report.save
+
+      if @post.reports.count > 0 
+        nodality = 0
+        graphic = 0
+        others = 0
+        @post.reports.each do |r|
+          if r.nodality?
+            nodality+=1
+          elsif r.graphic?
+            graphic+=1
+          else
+            others+=1
+          end
+        end
+
+        if nodality > 0 || graphic > 2
+          @post.publish = false
+          @post.save!
+        end
+        
+      end
+      redirect_to :action => :index
+  end
+    
+  end
+
+
 
   # DELETE /posts/1
   # DELETE /posts/1.json
@@ -125,6 +166,6 @@ class PostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.require(:post).permit(:user_id,:note,:tags,:image,:comment)
+      params.require(:post).permit(:user_id,:note,:tags,:image,:comment,:publish)
     end
 end

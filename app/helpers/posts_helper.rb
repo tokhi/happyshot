@@ -6,4 +6,12 @@ module PostsHelper
 		end
 		user.avatar
 	end
+
+	def human_date_format(date)
+		if date.to_s.include? Time.now.year.to_s
+			date.to_time.strftime('%b %d')
+		else
+			date.to_time.strftime('%b %d %H:%M %Z %Y')
+		end
+	end
 end

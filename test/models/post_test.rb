@@ -9,6 +9,7 @@
 #  note       :string
 #  tags       :string
 #  image      :string
+#  publish    :boolean
 #
 
 require 'test_helper'

@@ -1,7 +1,25 @@
 
-<div class="post">
-<section class="gifshot-image-preview-section">
-<img src="<%=post.image%>" style="width: 535px;height: 535px;">
-</section>
-<%= render :partial => 'comments', :locals=>{:post=>post}  %>
+<div class="post" id="post<%=post.id%>">
+	<hr/>
+	<div class="detailBox">
+		<div class="actionBox">
+			<ul class="commentList" >
+				<li>
+					<div class="commenterImage">
+						<img src="http://lorempixel.com/50/50/people/<%=user_avatar(post.user)%>" />
+						
+						
+					</div>
+					<div class="commentText">
+						<span class="label label-primary"><%=post.user.email.split("@").first%></span>
+						<span class="date sub-text">on <%=human_date_format(post.created_at)%></span>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<section class="gifshot-image-preview-section">
+		<img src="<%=post.image%>" style="width: 535px;height: 535px;">
+	</section>
+	<%= render :partial => 'comments', :locals=>{:post=>post}  %>
 </div>

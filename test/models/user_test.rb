@@ -17,6 +17,7 @@
 #  updated_at             :datetime
 #  note                   :string
 #  tags                   :string
+#  avatar                 :string
 #
 
 require 'test_helper'

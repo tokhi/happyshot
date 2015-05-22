@@ -9,6 +9,7 @@
 #  note       :string
 #  tags       :string
 #  image      :string
+#  publish    :boolean
 #
 
 class Post < ActiveRecord::Base
@@ -18,5 +19,6 @@ class Post < ActiveRecord::Base
   acts_as_commentable
   has_many :favorites
   has_many :users, :through => :favorites
+  has_many :reports
   # gif pause/play   http://jsfiddle.net/eh6uat9j/
 end
