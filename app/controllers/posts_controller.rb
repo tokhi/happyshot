@@ -46,7 +46,7 @@ class PostsController < ApplicationController
     # @post.user = current_user
     # @post.save!
     redirect_to :action => :index
-   
+
   end
 
   # PATCH/PUT /posts/1
@@ -72,9 +72,6 @@ class PostsController < ApplicationController
 
   def add_new_comment
     @post = Post.find(params[:id])
-    # post.comments << Post.new(params[:comment])
-    # redirect_to :action => :show, :id => post
-    # commentable = Post.create
     comment = @post.comments.create
     comment.user = current_user
     comment.comment = params[:comment]
@@ -89,29 +86,29 @@ class PostsController < ApplicationController
 
   def dis_or_like
     @post = Post.find(params[:id])
-   if @post.favorites.where(:user_id=>current_user.id).count > 0
-       puts "if part.."
+    if @post.favorites.where(:user_id=>current_user.id).count > 0
+      puts "if part.."
       @post.favorites.where(:user_id=>current_user.id)[0].delete
     else
       puts "else part..."
       current_user.favorites.create(:post_id => params[:id])
     end
-    #  nasty against DRY
-    # @posts = Post.order('created_at DESC').page(params[:page])
-    # # @posts = Post.where(:id => post.id..post.id+20).order('created_at DESC')
-    # @post = Post.new
-    # @favorite = Favorite.new
-
     respond_to do |format|
       format.html{render :index}
       format.js
-    end   
+    end
   end
 
   def report_post
     puts "post reported"
     @post = Post.find(params[:id])
-    if @post.reports.group_by(&:user_id).include? current_user.id
+    # block the post if admin reports
+    if current_user.admin?
+      @post.publish = false
+      @post.save!
+      redirect_to :action => :index
+      # prevent user if s/he tries to repot twice
+    elsif @post.reports.group_by(&:user_id).include? current_user.id
       redirect_to :action => :index
     else
       @report = Report.new
@@ -120,7 +117,7 @@ class PostsController < ApplicationController
       @report.type = params[:type].to_i
       @report.save
 
-      if @post.reports.count > 0 
+      if @post.reports.count > 0
         nodality = 0
         graphic = 0
         others = 0
@@ -138,11 +135,11 @@ class PostsController < ApplicationController
           @post.publish = false
           @post.save!
         end
-        
+
       end
       redirect_to :action => :index
-  end
-    
+    end
+
   end
 
 
@@ -159,13 +156,13 @@ class PostsController < ApplicationController
 
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_post
-      @post = Post.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_post
+    @post = Post.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def post_params
-      params.require(:post).permit(:user_id,:note,:tags,:image,:comment,:publish)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def post_params
+    params.require(:post).permit(:user_id,:note,:tags,:image,:comment,:publish)
+  end
 end

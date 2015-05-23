@@ -1,63 +1,61 @@
-<!-- Navigation -->
-    <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header page-scroll">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#page-top">Happy Shot</a>
-            </div>
+  <!-- Navigation -->
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header page-scroll">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#page-top">Happy Shot</a>
+      </div>
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="hidden">
-                        <a href="#page-top"></a>
-                    </li>
-                    
-                     <% if user_signed_in? %>
-                    <li class="page-scroll">
-                         <a href="#newShotModal" data-toggle="modal" data-dismiss="modal" class ="btn btn-default glyphicon glyphicon-facetime-video">
-                          New shot
-                          </a>
-                    </li>
-                    <% else %>
-                    <li class="page-scroll">
-                         <a href="#loginModal" data-toggle="modal" data-dismiss="modal" class ="btn btn-default glyphicon glyphicon-facetime-video">
-                          New shot
-                          </a>
-                    </li>
-                    <% end %>
-                    <li class="page-scroll">
-                        <a href="/posts">Home</a>
-                    </li>
-                    <% if user_signed_in? %>
-                       <li class="page-scroll">
-                      <%= link_to("My posts",  my_posts_posts_path, :method => :get) %>   
-                      </li>
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right">
+          <li class="hidden">
+            <a href="#page-top"></a>
+          </li>
 
-                      <li class="page-scroll">
-                      <%= render :partial => 'layouts/user_details'%>   
-                      </li>
-                    <% else %>
-                      <li class="page-scroll">
-                         <a href="#loginModal" data-toggle="modal" data-dismiss="modal" class ="btn btn-link">
-                          Login
-                          </a>
-                      </li>
-                    <% end %>
+          <% if user_signed_in? %>
+          <li class="page-scroll">
+           <a href="#newShotModal" data-toggle="modal" data-dismiss="modal" class ="btn btn-default glyphicon glyphicon-facetime-video">
+            New shot
+           </a>
+          </li>
+        <% else %>
+          <li class="page-scroll">
+           <a href="#loginModal" data-toggle="modal" data-dismiss="modal" class ="btn btn-default glyphicon glyphicon-facetime-video">
+            New shot
+           </a>
+          </li>
+        <% end %>
+      <li class="page-scroll">
+        <a href="/posts" class ="glyphicon glyphicon-home">
+            Home
+           </a>
+      </li>
+      <% if user_signed_in? %>
+      <li class="page-scroll">
+        <%= link_to("My posts",  my_posts_posts_path, :method => :get) %>   
+      </li>
 
-                    <li class="page-scroll">
-                        <a href="#contact">Imprint</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container-fluid -->
-        <%= render :partial => 'devise/registrations/edit'%>
-    </nav>
+      <li class="page-scroll">
+        <%= render :partial => 'layouts/user_details'%>   
+      </li>
+      <% else %>
+      <li class="page-scroll">
+       <a href="#loginModal" data-toggle="modal" data-dismiss="modal" class ="btn btn-link">
+        Login
+      </a>
+    </li>
+    <% end %>
+
+  </ul>
+</div>
+<!-- /.navbar-collapse -->
+</div>
+<!-- /.container-fluid -->
+</nav>

@@ -1,30 +1,35 @@
 <div class="container">
-	<div class="row">
-    
-  </div>
-		
-        <div class="modal fade" id="editPasswdModal">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-              <h4 class="modal-title">Change your passowrd?</h4>
-            </div>
-          <div class="modal-body">
 
-            <%= bootstrap_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-              <p>
-                <%= f.email_field :email, autofocus: true, class: 'span3', placeholder: 'Email' %>
-              </p>
-              
-              <p>
-                 <%= f.submit "Change passowrd", class: "btn btn-primary" %>
-              </p>
-            <% end %>
-          </div>
-          <div class="modal-footer">
-            <%= render "devise/shared/links" %>
-          </div>
+
+  <div class="modal fade" id="editPasswdModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h4 class="modal-title">Change your passowrd?</h4>
         </div>
-	</div>
+        <div class="modal-body">
+
+          <%= bootstrap_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+          <p>
+            <%= devise_error_messages! %>
+            <%= f.hidden_field :reset_password_token %>
+
+            <%= f.password_field :password, autofocus: true, class: 'span3', placeholder: 'Type your new password' %>
+          </p>
+
+          <p>
+            <%= f.password_field :password_confirmation, autocomplete: "off", class: 'span3', placeholder: 'Confirm new password' %>
+          </p>
+
+          <p>
+           <%= f.submit "Change passowrd", class: "btn btn-primary" %>
+         </p>
+         <% end %>
+       </div>
+       <div class="modal-footer">
+        <%= render "devise/shared/links" %>
+      </div>
+    </div>
+  </div>
 </div>

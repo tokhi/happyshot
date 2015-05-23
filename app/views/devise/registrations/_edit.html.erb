@@ -26,6 +26,9 @@
                  <%= f.password_field :password_confirmation, autocomplete: "off", class: "span3", placeholder: "Password" %>
               </p>
               <p>
+                <%= f.password_field :current_password, autocomplete: "off", class: "span3", placeholder: "Current password" %>
+              </p>
+              <p>
                  <%= f.submit "Update", class: "btn btn-primary" %>
                 <br />
               </p>
