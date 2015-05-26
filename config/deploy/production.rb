@@ -44,8 +44,8 @@ role :db,  %w{5.189.135.145}
 # --------------
  set :ssh_options, {
    keys: %w(/home/tokhi/.ssh/id_rsa),
-   forward_agent: false,
-   auth_methods: %w(password)
+   forward_agent: true
+   # auth_methods: %w(password)
  }
 #
 # The server-based syntax can be used to override options:
