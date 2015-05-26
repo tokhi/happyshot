@@ -30,7 +30,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'unicorn'
 
 # Use Capistrano for deployment
-gem 'capistrano-rails', group: :development
+gem 'capistrano-rails', '~> 1.1.3', group: :development
 gem 'capistrano-rvm'
 gem 'acts_as_commentable'
 gem 'devise'
