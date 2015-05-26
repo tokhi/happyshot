@@ -25,7 +25,7 @@ test:
 
 production:
   <<: *default
-  database: tokfood_production
+  database: happyshot_production
   encoding: unicode
   username: tokfood
   password: yie8EeVi
