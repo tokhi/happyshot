@@ -35,6 +35,13 @@ class PostsController < ApplicationController
   def create
     # @post = Post.new(post_params)
     @post = current_user.posts.create(post_params)
+    # StringIO.open(Base64.decode64(@post.image)) do |data|
+    #   data.class.class_eval { attr_accessor :original_filename, :content_type }
+    #   data.original_filename = "file.gif"
+    #   data.content_type = "image/gif"
+    #   self.image = data
+    # end
+
     # image = Magick::ImageList.new
     # File.open('public/test.gif', 'wb') do|f|
     #   gif = image.from_blob(Base64.decode64(@post.image))

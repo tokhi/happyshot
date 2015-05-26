@@ -7,7 +7,7 @@
     <p class="taskDescription">
       <div class="row">
         <div class="col-sm-3"><a href="#comments<%= post.id%>" class="btn btn-link" data-toggle="collapse"><%=post.comments.count%> comments</a></div>
-        <div class="col-sm-3"><a href="#" class="btn btn-link">Download gif</a></div>
+        
         <%= render :partial => 'report', :locals=>{:post=>post} %>
         <%= render :partial => 'favorite', :locals=>{:post=>post}  %>
       </div>
