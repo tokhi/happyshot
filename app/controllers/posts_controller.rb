@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:create, :my_posts]
-
+  before_action :verify_is_admin, only: [:new]
   # GET /posts
   # GET /posts.json
   def index
@@ -172,4 +172,8 @@ class PostsController < ApplicationController
   def post_params
     params.require(:post).permit(:user_id,:note,:tags,:image,:comment,:publish)
   end
+end
+
+def verify_is_admin
+  (current_user.nil?) ? redirect_to(root_path) : (redirect_to(root_path) unless current_user.admin?)
 end

@@ -21,7 +21,8 @@
           <img src="http://lorempixel.com/50/50/people/<%=user_avatar(comment.user)%>" />
         </div>
         <div class="commentText">
-          <p class=""><%=comment.comment%></p> <span class="date sub-text">on <%=human_date_format(comment.created_at)%></span>
+          <span class="date sub-text pull-left" align="left"><%=get_username(post.user)%> on <%=human_date_format(comment.created_at)%></span><br>
+          <p class="text-left"><%=comment.comment%></p> 
 
         </div>
       </li>
