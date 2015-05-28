@@ -1,4 +1,4 @@
-<div class="col-sm-3"><a href="#reportPostModal" data-toggle="modal" data-dismiss="modal" class ="btn btn-link glyphicon glyphicon-eye-open">&nbsp;Report</a></div>
+<div class="col-sm-4"><a href="#reportPostModal" data-toggle="modal" data-dismiss="modal" class ="btn btn-link glyphicon glyphicon-eye-open">&nbsp;Report</a></div>
             
 <div class="modal fade" id="reportPostModal">
   <div class="modal-dialog">
@@ -9,7 +9,7 @@
       </div>
       <%= bootstrap_form_for(@post, url: report_post_path) do |f| %>
       <div class="modal-body">
-        <p> Post contains:</p>
+        <p align="left"> Post contains:</p>
         <div>
          <select name="type" id="type" class="form-control">
           <option selected disabled>Choose one</option>

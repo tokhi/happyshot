@@ -53,7 +53,7 @@ class PostsController < ApplicationController
     # @post.user = current_user
     # @post.save!
     redirect_to :action => :index
-
+    
   end
 
   # PATCH/PUT /posts/1

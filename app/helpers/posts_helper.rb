@@ -14,4 +14,5 @@ module PostsHelper
 			date.to_time.strftime('%b %d %H:%M %Z %Y')
 		end
 	end
+
 end
