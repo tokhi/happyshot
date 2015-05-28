@@ -1,0 +1,69 @@
+<div class="modal fade" id="newPost">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h4 class="modal-title">Post a happyshot</h4>
+      </div>
+      <%= bootstrap_form_for(@post) do |f| %>
+      <div class="modal-body">
+         
+
+        <div class="placeholder-div hidden">
+          <span class="placeholder-div-dimensions"></span>
+        </div>
+       
+        <div class="fileinput fileinput-new" data-provides="fileinput">
+        
+         <%= f.text_area :note, id: 'notearea', class: 'input-medium', hide_label: 'true', placeholder: 'Say something', required: 'true', :maxlength => 130%>
+          <div id="textarea_feedback"></div>
+        </div>
+      </div>
+
+         <% if user_signed_in?%>
+         <%= f.text_field :image, :class=>"span3", :id=>"gifData", hide_label: 'true', placeholder: 'URL' %>
+         <%= f.hidden_field :publish, :value => true %>
+         <%= f.hidden_field :user_id, :value => current_user.id %>
+        <%end%>
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+         <%= f.submit :class=>"btn btn-primary" %>
+      </div>
+      <% end %>
+
+
+      
+
+      <script>
+         $("#gif-preview").bind("DOMSubtreeModified", function() {
+                 var a=document.querySelector('.gifshot-image-preview-section').innerHTML;
+             var b=$(a).attr('src');
+            document.getElementById("gifData").value=b;
+          // }
+          });
+      </script>
+
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<% if user_signed_in? and current_user.admin?%>
+<script>
+$('#newPost').modal('show');
+</script>
+<% end %>
+<script>
+$(document).ready(function() {
+    var text_max = 130;
+    $('#textarea_feedback').html(text_max + ' characters remaining');
+
+    $('#notearea').keyup(function() {
+        var text_length = $('#notearea').val().length;
+        var text_remaining = text_max - text_length;
+
+        $('#textarea_feedback').html(text_remaining + ' characters remaining');
+    });
+});
+</script>
