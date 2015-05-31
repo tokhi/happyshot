@@ -16,13 +16,29 @@
         </div>
         <br/>
         <progress max="1" value="0" class="gifshot-progress-bar hidden"></progress>
-
         <div class="fileinput fileinput-new" data-provides="fileinput">
-        <div id="gif-preview" class="gifshot-image-preview-section thumbnail" data-trigger="fileinput" style="width: 300px; height: 300px;"></div>
+        <div id="gif-preview" class="gifshot-image-preview-section thumbnail" data-trigger="fileinput" style="width: 150px; height: 150px;"></div>
+        <mark> To reset the gif click on the "Webcam Gif" button again</mark>
+        <br/>
+        </br>
+        Interval:
+         <div>
+         <select name="interval" id="interval" class="form-control">
+          <option value=".1">1 second</option>
+          <option value=".2">2 seconds</option>
+          <option value=".3">3 seconds</option>
+          <option value=".4">4 seconds</option>
+          <option value=".5">5 seconds</option>
+        </select>
+      </div>
+      <br/>
         <div>
          <%= f.text_area :note, id: 'notearea', class: 'input-medium', hide_label: 'true', placeholder: 'Say something', required: 'true', :maxlength => 130%>
           <div id="textarea_feedback"></div>
         </div>
+        
+       
+
       </div>
 
         <% if user_signed_in? %>
