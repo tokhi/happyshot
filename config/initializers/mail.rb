@@ -1,9 +1,9 @@
-MAIL_KEY =  "smartrecipes2793"
+MAIL_KEY =  ENV["GMAIL_PASSWORD"]
 ActionMailer::Base.smtp_settings = {
 	address: "smtp.gmail.com",
 	port: 587,
 	enable_starttls_auto: true,
-	user_name: "smrt.recipes@gmail.com",
+	user_name: "happyshot.in@gmail.com",
 	password: MAIL_KEY,
 	authentication: "plain"
 }
