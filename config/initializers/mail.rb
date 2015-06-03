@@ -5,7 +5,8 @@ ActionMailer::Base.smtp_settings = {
 	enable_starttls_auto: true,
 	user_name: "happyshot.in@gmail.com",
 	password: MAIL_KEY,
-	authentication: "plain"
+	authentication: "plain",
+	ssl: true
 }
 
 ActionMailer::Base.delivery_method = :smtp
