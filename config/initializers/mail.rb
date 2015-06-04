@@ -1,13 +1,9 @@
-MAIL_KEY =  ENV["GMAIL_PASSWORD"]
-ActionMailer::Base.smtp_settings = {
-	address: "smtp.gmail.com",
-	port: 587,
-	enable_starttls_auto: true,
-	user_name: "happyshot.in@gmail.com",
-	password: MAIL_KEY,
-	authentication: "plain",
-	ssl: true
+ActionMailer::Base.sendmail_settings = {
+        locaiton: "/usr/sbin/sendmail",
+        arguments: '-i -t'
 }
 
-ActionMailer::Base.delivery_method = :smtp
+ActionMailer::Base.delivery_method = :sendmail
+ActionMailer::Base.perform_deliveries = true
+ActionMailer::Base.raise_delivery_errors = true
 ActionMailer::Base.default charset: "utf-8"
