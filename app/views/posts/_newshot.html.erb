@@ -8,8 +8,12 @@
       <%= bootstrap_form_for(@post) do |f| %>
       <div class="modal-body">
          <span class="options-button-group">
-            <button type="button" id="create-gif" class="btn btn-large btn-primary create-gif-button">Webcam Gif</button>
+            <button type="button" id="create-gif" class="btn btn-large btn-warning create-gif-button">Webcam animation</button>
+
+            <button type="button" id="create-gif" class="btn btn-default btn-lg disabled ">Animation from video</button>
+           
           </span>
+
 
         <div class="placeholder-div hidden">
           <span class="placeholder-div-dimensions"></span>
