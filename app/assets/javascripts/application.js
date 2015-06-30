@@ -13,5 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require refile
+//= require_tree ./dependencies
 //= require_tree .
 //= require jquery.infinitescroll

@@ -35,6 +35,11 @@ class PostsController < ApplicationController
   def create
     # @post = Post.new(post_params)
     @post = current_user.posts.create(post_params)
+
+    # File.open("public/videos", "rb") do | file |
+    #   @post.video = file
+    #   # file.write(@post.video)
+    # end
     # StringIO.open(Base64.decode64(@post.image)) do |data|
     #   data.class.class_eval { attr_accessor :original_filename, :content_type }
     #   data.original_filename = "file.gif"
@@ -170,7 +175,7 @@ class PostsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def post_params
-    params.require(:post).permit(:user_id,:note,:tags,:image,:comment,:publish, :interval)
+    params.require(:post).permit(:user_id,:note,:tags,:image,:comment,:publish, :interval, :video)
   end
 end
 

@@ -8,13 +8,22 @@
       <%= bootstrap_form_for(@post) do |f| %>
       <div class="modal-body">
          <span class="options-button-group">
-            <button type="button" id="create-gif" class="btn btn-large btn-warning create-gif-button">Webcam animation</button>
-
-            <button type="button" id="create-gif" class="btn btn-default btn-lg disabled ">Animation from video</button>
-           
+            <button type="button" id="create-gif" class="btn btn-large btn-warning create-gif-button">Preview Webcam animation</button>
+            <button type="button" id="create-gifVideo" class="btn btn-large btn-primary create-gif-button">Preview Video animation</button>
           </span>
+        </hr>
+        <br/><br/>
+          <div class="form-group">
+         <span id= "atch_notify" class="label label-danger"></span>
+          <div id="attachedVideo">
+            <%= f.attachment_field :video, direct: true, class: "btn btn-default"%>
+            </div>
+        </div>
 
+          <br/>
+          <div id="video_id" class="hidden"></div>
 
+                  
         <div class="placeholder-div hidden">
           <span class="placeholder-div-dimensions"></span>
         </div>
@@ -22,17 +31,18 @@
         <progress max="1" value="0" class="gifshot-progress-bar hidden"></progress>
         <div class="fileinput fileinput-new" data-provides="fileinput">
         <div id="gif-preview" class="gifshot-image-preview-section thumbnail" data-trigger="fileinput" style="width: 150px; height: 150px;"></div>
-        <mark> To reset the gif click on the "Webcam Gif" button again</mark>
+        <mark> To reset the gif click on the "Preview Webcam/video animation" button again</mark>
         <br/>
         </br>
         Interval:
          <div>
          <select name="interval" id="interval" class="form-control">
           <option value=".1">1 second</option>
-          <option value=".2">2 seconds</option>
-          <option value=".3">3 seconds</option>
-          <option value=".4">4 seconds</option>
-          <option value=".5">5 seconds</option>
+          <option value=".25">2 seconds</option>
+          <option value=".35">3 seconds</option>
+          <option value=".45">4 seconds</option>
+          <option value="1">5 seconds</option>
+          <option value="2">6 seconds</option>
         </select>
       </div>
       <br/>
@@ -54,13 +64,11 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-         <%= f.submit :class=>"btn btn-primary" %>
+         <%= f.submit :class=>"btn btn-primary", :id=>"post_submit" %>
       </div>
       <% end %>
 
-
       
-
       <script>
          $("#gif-preview").bind("DOMSubtreeModified", function() {
                  var a=document.querySelector('.gifshot-image-preview-section').innerHTML;
@@ -76,15 +84,8 @@
 
 
 <script>
-$(document).ready(function() {
-    var text_max = 130;
-    $('#textarea_feedback').html(text_max + ' characters remaining');
 
-    $('#notearea').keyup(function() {
-        var text_length = $('#notearea').val().length;
-        var text_remaining = text_max - text_length;
 
-        $('#textarea_feedback').html(text_remaining + ' characters remaining');
-    });
-});
+
 </script>
+

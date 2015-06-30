@@ -20,5 +20,6 @@ class Post < ActiveRecord::Base
   has_many :favorites
   has_many :users, :through => :favorites
   has_many :reports
+  attachment :video
   # gif pause/play   http://jsfiddle.net/eh6uat9j/
 end
