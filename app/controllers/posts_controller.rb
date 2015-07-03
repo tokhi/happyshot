@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:create, :my_posts]
+  # before_action :authenticate_user!, only: [:create, :my_posts]
+  before_action :user_authentication, only: [:create, :my_posts]
   before_action :verify_is_admin, only: [:new]
   # GET /posts
   # GET /posts.json
@@ -181,4 +182,11 @@ end
 
 def verify_is_admin
   (current_user.nil?) ? redirect_to(root_path) : (redirect_to(root_path) unless current_user.admin?)
+end
+
+def user_authentication
+  if current_user.nil?
+    session[:post_params] = post_params
+    redirect_to(user_session_path)
+  end
 end

@@ -22,19 +22,11 @@
             <a href="#page-top"></a>
           </li>
 
-          <% if user_signed_in? %>
           <li class="page-scroll">
            <a href="#newShotModal" data-toggle="modal" data-dismiss="modal" class ="btn btn-default glyphicon glyphicon-facetime-video">
             New shot
            </a>
           </li>
-        <% else %>
-          <li class="page-scroll">
-           <a href="#loginModal" data-toggle="modal" data-dismiss="modal" class ="btn btn-default glyphicon glyphicon-facetime-video">
-            New shot
-           </a>
-          </li>
-        <% end %>
       <li class="page-scroll">
         <a href="/posts" class ="glyphicon glyphicon-home">
             Home

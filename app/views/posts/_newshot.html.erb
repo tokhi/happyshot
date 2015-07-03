@@ -7,6 +7,19 @@
       </div>
       <%= bootstrap_form_for(@post) do |f| %>
       <div class="modal-body">
+
+        Interval:
+         <div>
+         <select name="interval" id="interval" class="form-control">
+          <option value=".1">1 second</option>
+          <option value=".25">2 seconds</option>
+          <option value=".35">3 seconds</option>
+          <option value=".45">4 seconds</option>
+          <option value="1">5 seconds</option>
+          <option value="2">6 seconds</option>
+        </select>
+      </div>
+        <br/>
          <span class="options-button-group">
             <button type="button" id="create-gif" class="btn btn-large btn-warning create-gif-button">Preview Webcam animation</button>
             <button type="button" id="create-gifVideo" class="btn btn-large btn-primary create-gif-button">Preview Video animation</button>
@@ -33,18 +46,7 @@
         <div id="gif-preview" class="gifshot-image-preview-section thumbnail" data-trigger="fileinput" style="width: 150px; height: 150px;"></div>
         <mark> To reset the gif click on the "Preview Webcam/video animation" button again</mark>
         <br/>
-        </br>
-        Interval:
-         <div>
-         <select name="interval" id="interval" class="form-control">
-          <option value=".1">1 second</option>
-          <option value=".25">2 seconds</option>
-          <option value=".35">3 seconds</option>
-          <option value=".45">4 seconds</option>
-          <option value="1">5 seconds</option>
-          <option value="2">6 seconds</option>
-        </select>
-      </div>
+        
       <br/>
         <div>
          <%= f.text_area :note, id: 'notearea', class: 'input-medium', hide_label: 'true', placeholder: 'Say something', required: 'true', :maxlength => 130%>

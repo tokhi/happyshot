@@ -4,4 +4,5 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   # http://stackoverflow.com/questions/3836462/rails-3-form-helpers-utf8-and-other-hidden-fields
   utf8_enforcer_workaround
+
 end
