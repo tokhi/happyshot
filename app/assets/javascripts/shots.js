@@ -28,14 +28,14 @@ $(document).ready(function() {
 
 // disable submit button while video uploads
 $(document).on("upload:start", "form", function(e) {
-    document.querySelector('#atch_notify').innerHTML="Uploading video, wait please...";
+    document.querySelector('#notify').innerHTML="Uploading video, wait please...";
     document.getElementById("create-gifVideo").disabled = true; 
     $(this).find("input[type=submit]").attr("disabled", true)
 });
 // enable back submit button while video upload finish
 $(document).on("upload:complete", "form", function(e) {
     if (!$(this).find("input.uploading").length) {
-        document.querySelector('#atch_notify').innerHTML="Upload Done!";
+        document.querySelector('#notify').innerHTML="Upload Done!";
         document.getElementById("create-gifVideo").disabled = false; 
         $(this).find("input[type=submit]").removeAttr("disabled")
     }
