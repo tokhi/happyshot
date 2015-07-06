@@ -1,7 +1,7 @@
 
 <div class="post" id="post<%=post.id%>">
 	<hr/>
-	<div class="detailBox">
+	<div class="detailBox span6">
 		<div class="actionBox">
 			<ul class="commentList" >
 				<li>
@@ -20,7 +20,7 @@
 	</div>
 
 	<section class="gifshot-image-preview-section">
-		<img src="<%=post.image%>" alt="<%=post.note%>" style="width: 535px;height: 535px;">
+		<img src="<%=post.image%>" alt="<%=post.note%>" class="img-responsive center-block" style="width: 535px;height: 535px;">
 	</section>
 	<%= render :partial => 'comments', :locals=>{:post=>post}  %>
 </div>
