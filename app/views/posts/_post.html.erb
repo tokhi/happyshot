@@ -19,8 +19,12 @@
 		</div>
 	</div>
 
+	<style>
+	    .wrapper { float: left; clear: left; display: table; table-layout: fixed; }
+	    img.img-responsive { display: table-cell; min-width: 500px; max-width: 100%; }
+	</style>
 	<section class="gifshot-image-preview-section">
-		<img src="<%=post.image%>" alt="<%=post.note%>" class="img-responsive center-block" style="width: 535px;height: 535px;">
+		<img src="<%=post.image%>" alt="<%=post.note%>" class="img-responsive center-block">
 	</section>
 	<%= render :partial => 'comments', :locals=>{:post=>post}  %>
 </div>
