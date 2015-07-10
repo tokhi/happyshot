@@ -1,4 +1,4 @@
-
+<% cache ["v1", post] do %>
 <div class="post" id="post<%=post.id%>">
 	<hr/>
 	<div class="detailBox span6">
@@ -28,3 +28,4 @@
 	</section>
 	<%= render :partial => 'comments', :locals=>{:post=>post}  %>
 </div>
+<% end %>
