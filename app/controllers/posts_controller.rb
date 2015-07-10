@@ -89,7 +89,8 @@ class PostsController < ApplicationController
     comment.user = current_user
     comment.comment = params[:comment]
     comment.save
-
+    # updates the model to invalidate the previous cach
+    @post.touch
     # redirect_to :action => :index
     respond_to do |format|
       format.html{render :index}
@@ -100,12 +101,12 @@ class PostsController < ApplicationController
   def dis_or_like
     @post = Post.find(params[:id])
     if @post.favorites.where(:user_id=>current_user.id).count > 0
-      puts "if part.."
       @post.favorites.where(:user_id=>current_user.id)[0].delete
     else
-      puts "else part..."
       current_user.favorites.create(:post_id => params[:id])
     end
+    # updates the model to invalidate the previous cach
+    @post.touch
     respond_to do |format|
       format.html{render :index}
       format.js
@@ -150,6 +151,8 @@ class PostsController < ApplicationController
         end
 
       end
+      # updates the model to invalidate the previous cach
+      @post.touch
       redirect_to :action => :index
     end
 
