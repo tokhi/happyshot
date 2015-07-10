@@ -24,7 +24,7 @@
 	    img.img-responsive { display: table-cell; min-width: 500px; max-width: 500%;  }
 	</style>
 	<section class="gifshot-image-preview-section">
-		<img src="<%=post.image%>" alt="<%=post.note%>" class="img-responsive center-block" style="height: 400px; width: 500px;">
+		<img src="<%=post.image%>" alt="<%=post.note%>" class="img-responsive center-block img-rounded" style="height: 400px; width: 500px;">
 	</section>
 	<%= render :partial => 'comments', :locals=>{:post=>post}  %>
 </div>
