@@ -12,7 +12,7 @@ $(document).ready(function() {
 
     // getting video id
     $('#attachedVideo').bind('DOMSubtreeModified', function(event) {
-
+        _gaq.push(['_trackEvent', 'click', 'attach video','']);
         var attachedVideoDiv = document.getElementById("attachedVideo").innerHTML;
         var videoID = $(attachedVideoDiv).attr("value").split("filename")[0].replace("id\":\"", "");
         videoID = videoID.replace(/([^a-z0-9]+)/gi, '');
@@ -23,17 +23,27 @@ $(document).ready(function() {
 
     });
 
+    $( "#nav-shot" ).click(function() {
+     _gaq.push(['_trackEvent', 'click', 'Create happyshot Nav','']);
+    });
+
+    $( "#trigerModal" ).click(function() {
+          _gaq.push(['_trackEvent', 'click', 'Create happyshot page','']);
+    });
+
     
     });
 
 // disable submit button while video uploads
 $(document).on("upload:start", "form", function(e) {
+    _gaq.push(['_trackEvent', 'upload', 'video upload starts','']);
     document.querySelector('#notify').innerHTML="Uploading video, wait please...";
     document.getElementById("create-gifVideo").disabled = true; 
     $(this).find("input[type=submit]").attr("disabled", true)
 });
 // enable back submit button while video upload finish
 $(document).on("upload:complete", "form", function(e) {
+    _gaq.push(['_trackEvent', 'upload', 'video upload complete','']);
     if (!$(this).find("input.uploading").length) {
         document.querySelector('#notify').innerHTML="Upload Done!";
         document.getElementById("create-gifVideo").disabled = false; 

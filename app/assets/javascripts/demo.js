@@ -106,13 +106,14 @@
         return;
       }
       createGIFButton.addEventListener('click', function(e) {
+        _gaq.push(['_trackEvent', 'click', 'webcam button','']);
         gifSource="webcam";
         
         process();
       }, false);
 
       createGIFButtonVideo.addEventListener('click', function(e) {
-        
+        _gaq.push(['_trackEvent', 'click', 'video button','']);
         gifSource="video";
         if(get_videoid().innerHTML =="")
           document.querySelector('#atch_notify').innerHTML="Please choose a video file!";
