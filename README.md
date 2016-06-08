@@ -13,8 +13,8 @@ bundle exec rails s
 
 **DEMO VIDEOS**
 
-* [video 1](https://www.youtube.com/watch?v=7AUbIVFTBd0)
-* [video 2](https://www.youtube.com/watch?v=RF6LPwmBjJ0)
+* [video 1 - existing video](https://www.youtube.com/watch?v=7AUbIVFTBd0)
+* [video 2 - webcam](https://www.youtube.com/watch?v=RF6LPwmBjJ0)
 
 ## Contribution
 This app is using an older version of the `gifshot`, feel free to send pull requests.
