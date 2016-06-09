@@ -11,6 +11,10 @@ bundle install
 bundle exec rails s
 ```
 
+**Admin access**
+* user: admin
+* pass: admin123
+
 **DEMO VIDEOS**
 
 * [video/ webcam](https://www.youtube.com/watch?v=RF6LPwmBjJ0)
